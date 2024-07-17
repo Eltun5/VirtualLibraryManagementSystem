@@ -14,10 +14,8 @@ public class BorrowBook {
                     break;
                 }
             }
-            Scanner sr = new Scanner(System.in);
             Scanner sr1=new Scanner(System.in);
-            System.out.print("Please enter title of book:");
-            String title = sr.nextLine();
+            String title = AddBook.nameInputFunction.input("book");
             boolean has1=false;
             for (Book b : arrBook) {
                 if (title.equalsIgnoreCase(b.getTitle())) {

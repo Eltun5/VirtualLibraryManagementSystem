@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UpdateBook {
     static void updateBook(List<Book> arrBook){
-        Book book=FindBook.findBookName(arrBook);
+        Book book=FindBook.FindBookFunction.apply(arrBook);
         Scanner sr = new Scanner(System.in);
         Scanner sr1 = new Scanner(System.in);
         System.out.print("""

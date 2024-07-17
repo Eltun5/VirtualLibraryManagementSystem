@@ -29,7 +29,7 @@ public class Display {
             case 4 -> {
                 for (Book b : arrBook) System.out.println(b);
             }
-            case 5 -> FindBook.findBookAuthor(arrBook);
+            case 5 -> FindBook.FindBookAuthorFunction.accept(arrBook);
             case 6 -> FindBook.findBookGenre(arrBook);
             case 7 -> {
                 boolean has=false;
@@ -82,7 +82,7 @@ public class Display {
             case 1 -> {
                 for (Book b : arrBook) System.out.println(b);
             }
-            case 2 -> FindBook.findBookAuthor(arrBook);
+            case 2 -> FindBook.FindBookAuthorFunction.accept(arrBook);
             case 3 -> FindBook.findBookGenre(arrBook);
             case 4 -> System.out.println(selectedAccount.getFav());
             default -> empty = false;
@@ -90,7 +90,7 @@ public class Display {
         if (empty) {
             System.out.print("Do you want to add favorites any book.(0 is yes):");
             if (sr.nextInt() == 0) {
-                Book b=FindBook.findBookName(arrBook);
+                Book b=FindBook.FindBookFunction.apply(arrBook);
                 for (Book b1: selectedAccount.getFav()){
                     if (b1==b){
                         System.out.println("This book has your favorites.");

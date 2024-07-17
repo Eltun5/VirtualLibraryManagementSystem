@@ -1,8 +1,10 @@
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class FindBook {
-    static Book findBookName(List<Book> arrBook) {
+    static Function<List<Book>, Book> FindBookFunction = (arrBook) -> {
         Scanner sr = new Scanner(System.in);
         Book book = null;
         do {
@@ -18,9 +20,8 @@ public class FindBook {
                 System.out.println("Title is wrong try again.");
         } while (book == null);
         return book;
-    }
-
-    static void findBookAuthor(List<Book> arrBook) {
+    };
+    static Consumer<List<Book>> FindBookAuthorFunction = arrBook -> {
         Scanner sr = new Scanner(System.in);
         boolean has = false;
         System.out.print("Please enter author of book:");
@@ -34,7 +35,8 @@ public class FindBook {
         if (!has) {
             System.out.println("Has not any book that author name is " + author);
         }
-    }
+    };
+
 
     static void findBookGenre(List<Book> arrBook) {
         Scanner sr = new Scanner(System.in);
@@ -60,14 +62,14 @@ public class FindBook {
                     yield null;
                 }
             };
-        }while (bookGenre==null);
-        for (Book b:arrBook){
-            if (b.getGenre()==bookGenre){
+        } while (bookGenre == null);
+        for (Book b : arrBook) {
+            if (b.getGenre() == bookGenre) {
                 System.out.println(b);
-                has=true;
+                has = true;
             }
         }
-        if (!has){
+        if (!has) {
             System.out.println("Has not any book that genre is " + bookGenre);
         }
     }

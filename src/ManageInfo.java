@@ -36,7 +36,7 @@ public class ManageInfo {
                 Enter(int):""");
         switch (sr.nextInt()) {
             case 1 -> AddBook.addBook(arrBook);
-            case 2 -> arrBook.remove(FindBook.findBookName(arrBook));
+            case 2 -> arrBook.remove(FindBook.FindBookFunction.apply(arrBook));
             case 3 -> UpdateBook.updateBook(arrBook);
             default -> {}
         }

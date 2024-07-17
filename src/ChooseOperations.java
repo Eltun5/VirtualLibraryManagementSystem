@@ -2,9 +2,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ChooseOperations {
+    static Scanner sr = new Scanner(System.in);
+    static Exit exit=()->{
+        System.out.print("\n\nDo you really want to exit?(0 yes):");
+        if (sr.nextInt() == 0) {
+            System.exit(0);
+        }
+    };
     static User chooseOperationForLibrarian(List<User> arr, User selectedUser,
                                             int librarianPIN, List<Book> arrBook, List<Transaction> arrTransaction) {
-        Scanner sr = new Scanner(System.in);
         System.out.print("""
                                 
                                            Choose Operation
@@ -18,12 +24,7 @@ public class ChooseOperations {
             case 1 -> selectedUser = ManageInfo.manageAccount(arr, selectedUser, librarianPIN);
             case 2 -> ManageInfo.manageBooks(arrBook);
             case 3 -> Display.displayAll(arr, arrBook, arrTransaction);
-            case 0 -> {
-                System.out.print("\n\nDo you really want to exit?(0 yes):");
-                if (sr.nextInt() == 0) {
-                    selectedUser = null;
-                }
-            }
+            case 0 -> exit.exit();
             default -> System.out.println("Please enter valid number.");
         }
         return selectedUser;
@@ -48,12 +49,7 @@ public class ChooseOperations {
             case 3 -> ReturnBook.returnBook(selectedUser, arrTransaction);
             case 4 -> Display.displayBooks(arrBook, selectedUser);
             case 5 -> pay(selectedUser);
-            case 0 -> {
-                System.out.println("\n\n Do you really want to exit?(0 yes):");
-                if (sr.nextInt() == 0) {
-                    selectedUser = null;
-                }
-            }
+            case 0 -> exit.exit();
             default -> System.out.println("Please enter valid number.");
         }
         return selectedUser;

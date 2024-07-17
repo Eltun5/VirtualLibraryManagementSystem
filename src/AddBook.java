@@ -4,10 +4,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddBook {
+    static Scanner sr1 = new Scanner(System.in);
+    static Scanner sr = new Scanner(System.in);
+    static Input<Integer> dateInputFunction = s -> {
+        System.out.print("Please enter "+s+"(int):");
+        return sr1.nextInt();
+    };
+    static Input<String> nameInputFunction = s -> {
+        System.out.print("Please enter "+s+" name:");
+        return sr.nextLine();
+    };
     static void addBook(List<Book> arrBook) {
-        Scanner sr = new Scanner(System.in);
-        Scanner sr1 = new Scanner(System.in);
-        String title ;
+        String title;
         do {
             System.out.print("Please enter title:");
             title = sr.nextLine();
@@ -18,8 +26,7 @@ public class AddBook {
                 }
             }
         } while (title == null);
-        System.out.print("Please enter author name:");
-        String author = sr.nextLine();
+        String author= nameInputFunction.input("Author");
         BookGenre bookGenre;
         do {
             System.out.print("""
@@ -42,12 +49,9 @@ public class AddBook {
                 }
             };
         } while (bookGenre == null);
-        System.out.print("Please enter year(int):");
-        int year = sr1.nextInt();
-        System.out.print("Please enter month(int):");
-        int month = sr1.nextInt();
-        System.out.print("Please enter day(int):");
-        int day = sr1.nextInt();
+        int year = dateInputFunction.input("year");
+        int month = dateInputFunction.input("month");
+        int day = dateInputFunction.input("day");
         Book book = null;
         try {
             book= new Book(title, author, bookGenre, LocalDate.of(year, month, day));
